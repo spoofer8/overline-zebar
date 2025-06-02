@@ -11,71 +11,74 @@ export function TitleDetails({
   title: string | null | undefined;
   artist: string | null | undefined;
 }) {
-  const artistKey = artist ?? undefined;
-  const titleKey = title ?? undefined;
-  const [artistRef, { width: artistWidth }] = useMeasure();
-  const [titleRef, { width: titleWidth }] = useMeasure();
+//  const artistKey = artist ?? undefined;
+//  const titleKey = title ?? undefined;
+//  const [artistRef, { width: artistWidth }] = useMeasure();
+//  const [titleRef, { width: titleWidth }] = useMeasure();
   // This allows us to truncate the longer of the two fully, to fit in the max width.
   // i.e. REALLY_LONG_ARTIS... - title
   // artist - REALLY_LONG_TI...
-  const [truncateArtist, setTruncateArtist] = React.useState<boolean | null>(null);
-  const config = useConfig();
-
-  React.useEffect(() => {
-    if (artistWidth === 0 || titleWidth === 0) return;
-    if (Math.abs(artistWidth - titleWidth) < 2) return;
-
-    setTruncateArtist(artistWidth > titleWidth);
-  }, [artistWidth, titleWidth]);
-
+//  const [truncateArtist, setTruncateArtist] = React.useState<boolean | null>(null);
+//  const config = useConfig();
+//
+//  React.useEffect(() => {
+//    if (artistWidth === 0 || titleWidth === 0) return;
+//    if (Math.abs(artistWidth - titleWidth) < 2) return;
+//
+//    setTruncateArtist(artistWidth > titleWidth);
+//  }, [artistWidth, titleWidth]);
+//
   return (
-    <div
-      style={config.mediaMaxWidth ? { maxWidth: `${config.mediaMaxWidth}px` } : undefined}
-      className={cn(
-        "inline-flex items-center gap-1.5 cursor-pointer outline-none"
-      )}
-    >
-      <AnimatePresence mode="popLayout">
-        <div
-          className={cn(
-            truncateArtist === null
-              ? "flex-shrink-0" // Initial safe default
-              : truncateArtist
-                ? "flex-grow min-w-0"
-                : "flex-shrink-0"
-          )}
-        >
-          <MotionText
-            key={artistKey}
-            ref={artistRef}
-            className="truncate"
-          >
-            {artist}
-          </MotionText>
-        </div>
-      </AnimatePresence>
 
-      {artist && title && <p className="flex-shrink-0">-</p>}
-
-      <AnimatePresence mode="popLayout">
-        <div
-          className={cn(
-            truncateArtist === null
-              ? "flex-shrink-0"
-              : !truncateArtist
-                ? "flex-grow min-w-0"
-                : "flex-shrink-0"
-          )}
-        >
-          <MotionText
-            key={titleKey}
-            ref={titleRef}
-            className="truncate"
-          >
-            {title}
-          </MotionText>
-        </div>
-      </AnimatePresence>
+//    <div
+//      style={config.mediaMaxWidth ? { maxWidth: `${config.mediaMaxWidth}px` } : undefined}
+//      className={cn(
+//        "inline-flex items-center gap-1.5 cursor-pointer outline-none"
+//      )}
+//    >
+//      <AnimatePresence mode="popLayout">
+//        <div
+//          className={cn(
+//            truncateArtist === null
+//              ? "flex-shrink-0" // Initial safe default
+//              : truncateArtist
+//               ? "flex-grow min-w-0"
+//                : "flex-shrink-0"
+//          )}
+//       >
+//          <MotionText
+//            key={artistKey}
+//            ref={artistRef}
+//            className="truncate"
+//          >
+//            {artist}
+//          </MotionText>
+//        </div>
+//      </AnimatePresence>
+//
+//      {artist && title && <p className="flex-shrink-0">-</p>}
+//
+//      <AnimatePresence mode="popLayout">
+//        <div
+//          className={cn(
+//            truncateArtist === null
+//              ? "flex-shrink-0"
+//              : !truncateArtist
+//                ? "flex-grow min-w-0"
+//                : "flex-shrink-0"
+//          )}
+//        >
+//          <MotionText
+//            key={titleKey}
+//            ref={titleRef}
+//            className="truncate"
+//          >
+//            {title}
+//          </MotionText>
+//        </div>
+//      </AnimatePresence>
+    <div className="inline-flex items-center gap-1.5 cursor-pointer outline-none">
+      <p>Firefox</p>
     </div>
   );
 }
