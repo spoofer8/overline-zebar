@@ -9,13 +9,17 @@ const buttonType = {
 interface SystrayItemProps {
   icon: SystrayIcon;
   systray: SystrayOutput;
+  onClick: (e: React.MouseEvent) => void;
 }
 
-export function SystrayItem({ icon, systray }: SystrayItemProps) {
+export function SystrayItem({ icon, systray, onClick }: SystrayItemProps) {
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (e.shiftKey) return;
+    if (e.shiftKey || e.ctrlKey) {
+      onClick(e);
+      return;
+    }
     switch (e.button) {
       case buttonType["LEFT"]:
         systray.onLeftClick(icon.id);
@@ -31,7 +35,7 @@ export function SystrayItem({ icon, systray }: SystrayItemProps) {
 
   return (
     <button
-      onMouseDown={(e) => handleClick(e)}
+      onMouseDown={handleClick}
       // Toggle firing right click event so it can use the trayicons one
       onContextMenu={(e) => { e.preventDefault() }}
     >
